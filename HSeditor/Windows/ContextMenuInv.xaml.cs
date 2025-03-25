@@ -61,6 +61,35 @@ namespace HSeditor.Windows
             }
         }
 
+        private void ContextMenu_NewSeed_Click(object sender, RoutedEventArgs e)
+        {
+            this.IsOpen = false;
+            // Generate a random seed between 1 and 99999999 (8 digits)
+            int randomSeed = MainWindow.INSTANCE.random.Next(1, 100000000);
+            
+            // Update the item's seed value
+            if (!bindStruct.Item.SaveItem.ContainsKey("seed"))
+                bindStruct.Item.SaveItem.Add("seed", randomSeed);
+            else
+                bindStruct.Item.SaveItem["seed"] = randomSeed;
+
+            bindStruct.Item.RollID = randomSeed;
+
+            // Update the appropriate view based on the origin
+            switch (bindStruct.Origin)
+            {
+                case DragHandler.Origin.Equip:
+                    MainWindow.INSTANCE.UpdateEquippedItems();
+                    break;
+                case DragHandler.Origin.Inventory:
+                    MainWindow.INSTANCE.UpdateInventory();
+                    break;
+                case DragHandler.Origin.Stash:
+                    MainWindow.INSTANCE.UpdateStash();
+                    break;
+            }
+        }
+
         private void Open(object sender, RoutedEventArgs e)
         {
             this.UpdateLayout();
