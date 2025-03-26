@@ -119,6 +119,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="ini.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Sprites\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<Resource Include="editor.ico" />
 		<Resource Include="Resources\All Slots.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
